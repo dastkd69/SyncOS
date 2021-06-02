@@ -11,36 +11,30 @@ from ssh2.sftp import LIBSSH2_FXF_READ, LIBSSH2_FXF_CREAT, LIBSSH2_FXF_WRITE, LI
 
 import config
 
+#config
 USERNAME = config.USERNAME
 PASSWORD = config.PASSWORD
 SERVER = config.SERVER
 PORT = config.PORT
+SERVER_DIR_TREE_LOCATION = config.SERVER_DIR_TREE_LOCATION
+SOURCE_DIR_LOCATION = config.SOURCE_DIR_LOCATION
 
-parser = argparse.ArgumentParser()
-
-parser.add_argument('source', help="Source file to copy")
-parser.add_argument('destination', help="Remote destination file to copy to")
-parser.add_argument('--protocol', dest='protocol',default='SCP',help='Protocol to use')
-parser.add_argument('--host', dest='host',default=SERVER, help='Host to connect to')
-parser.add_argument('--port', dest='port', default=PORT, help="Port to connect on", type=int)
-parser.add_argument('-u', dest='user', default=USERNAME, help="User name to authenticate as")
-
-args = parser.parse_args()
+session = Session()
 
 def timer(now):
     taken = datetime.now() - now
     print("Finished writing remote file in %s" % (taken))
 
-def scpTransfer(args, session):
-    fileinfo = os.stat(args.source)
+def scpTransfer(session):
+    fileinfo = os.stat(SOURCE_DIR_LOCATION) #CHANGE THIS FOR RECURSIVE DIRECTORY LISTING. RN THIS JUST DOES ONE SPECIFIC FILE.
     now = datetime.now()
     try:
-        channel = session.scp_send64(args.destination, fileinfo.st_mode & 0o777, fileinfo.st_size,fileinfo.st_mtime, fileinfo.st_atime)
+        channel = session.scp_send64(SERVER_DIR_TREE_LOCATION, fileinfo.st_mode & 0o777, fileinfo.st_size,fileinfo.st_mtime, fileinfo.st_atime)
 
-        print("Starting SCP of local file %s to remote %s:%s" % (args.source, args.host, args.destination))
+        print("Starting SCP of local file %s to remote %s:%s" % (SOURCE_DIR_LOCATION, SERVER, SERVER_DIR_TREE_LOCATION))
     
         try:    
-            with open(args.source, 'rb') as local_fh:
+            with open(SOURCE_DIR_LOCATION, 'rb') as local_fh:
                 for data in local_fh:
                     channel.write(data)
         except Exception as e:
@@ -50,12 +44,12 @@ def scpTransfer(args, session):
     
     timer(now)
 
-def sftpGet(args, session):
+def sftpGet(session):
     sftp = session.sftp_init()
     now = datetime.now()
     
     try:
-        with sftp.open(args.source, LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR) as remote_fh, open(args.destination, 'wb') as local_fh:
+        with sftp.open(SOURCE_DIR_LOCATION, LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR) as remote_fh, open(SERVER_DIR_TREE_LOCATION, 'wb') as local_fh:
             for _, data in remote_fh:
                 local_fh.write(data)
     except Exception as e:
@@ -63,16 +57,16 @@ def sftpGet(args, session):
 
     timer(now)
 
-def sftpSend(args, session):
+def sftpSend(session):
     sftp = session.sftp_init()
     mode = LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IROTH
     flags = LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE
     
-    print("Starting copy of local file %s to remote %s:%s" % (args.source, args.host, args.destination))
+    print("Starting copy of local file %s to remote %s:%s" % (SOURCE_DIR_LOCATION, SERVER, SERVER_DIR_TREE_LOCATION))
     now = datetime.now()
     
     try:
-        with open(args.source, 'rb') as local_fh, sftp.open(args.destination, flags, mode) as remote_fh:
+        with open(SOURCE_DIR_LOCATION, 'rb') as local_fh, sftp.open(SERVER_DIR_TREE_LOCATION, flags, mode) as remote_fh:
             for data in local_fh:
                 remote_fh.write(data)
     except Exception as e:
@@ -80,16 +74,14 @@ def sftpSend(args, session):
     
     timer(now)
 
-def main(args):
+
+def initialise(protocol):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((args.host, args.port))
+    sock.connect((SERVER, PORT))
     session = Session()
     session.handshake(sock)
-    session.userauth_password(args.user, 'admin')
-    if args.protocol == 'SCP':
-        scpTransfer(args, session)
-    elif args.protocol == 'FTP':
-        sftpSend(args, session)
-
-
-main(args)
+    session.userauth_password(USERNAME, PASSWORD)
+    if protocol == 'SCP':
+        scpTransfer(session)
+    elif protocol == 'FTP':
+        sftpSend(session)
