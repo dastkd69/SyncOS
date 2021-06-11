@@ -21,15 +21,11 @@ SOURCE_DIR_LOCATION = config.SOURCE_DIR_LOCATION
 
 session = Session()
 
-def timer(now):
-    taken = datetime.now() - now
-    print("Finished writing remote file in %s" % (taken))
-
 def scpTransfer(session):
     fileinfo = os.stat(SOURCE_DIR_LOCATION) #CHANGE THIS FOR RECURSIVE DIRECTORY LISTING. RN THIS JUST DOES ONE SPECIFIC FILE.
-    now = datetime.now()
+    
     try:
-        channel = session.scp_send64(SERVER_DIR_TREE_LOCATION, fileinfo.st_mode & 0o777, fileinfo.st_size,fileinfo.st_mtime, fileinfo.st_atime)
+        channel = session.scp_send64(SERVER_DIR_TREE_LOCATION, fileinfo.st_mode & 0o777, fileinfo.st_size, fileinfo.st_mtime, fileinfo.st_atime)
 
         print("Starting SCP of local file %s to remote %s:%s" % (SOURCE_DIR_LOCATION, SERVER, SERVER_DIR_TREE_LOCATION))
     
@@ -41,13 +37,8 @@ def scpTransfer(session):
             print(str(e))
     except Exception as e:
         print(str(e))
-    
-    timer(now)
 
-def sftpGet(session):
-    sftp = session.sftp_init()
-    now = datetime.now()
-    
+def sftpGet(sftp, session):    
     try:
         with sftp.open(SOURCE_DIR_LOCATION, LIBSSH2_FXF_READ, LIBSSH2_SFTP_S_IRUSR) as remote_fh, open(SERVER_DIR_TREE_LOCATION, 'wb') as local_fh:
             for _, data in remote_fh:
@@ -55,15 +46,11 @@ def sftpGet(session):
     except Exception as e:
         print("Error at sftpRead: ", str(e))
 
-    timer(now)
-
-def sftpSend(session):
-    sftp = session.sftp_init()
+def sftpSend(sftp, session):
     mode = LIBSSH2_SFTP_S_IRUSR | LIBSSH2_SFTP_S_IWUSR | LIBSSH2_SFTP_S_IRGRP | LIBSSH2_SFTP_S_IROTH
     flags = LIBSSH2_FXF_CREAT | LIBSSH2_FXF_WRITE
     
     print("Starting copy of local file %s to remote %s:%s" % (SOURCE_DIR_LOCATION, SERVER, SERVER_DIR_TREE_LOCATION))
-    now = datetime.now()
     
     try:
         with open(SOURCE_DIR_LOCATION, 'rb') as local_fh, sftp.open(SERVER_DIR_TREE_LOCATION, flags, mode) as remote_fh:
@@ -72,16 +59,35 @@ def sftpSend(session):
     except Exception as e:
         print("Error at sftpRead: ", str(e))
     
-    timer(now)
 
 
-def initialise(protocol):
+def initialise():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((SERVER, PORT))
+    sock.connect((SERVER, int(PORT)))
     session = Session()
     session.handshake(sock)
     session.userauth_password(USERNAME, PASSWORD)
-    if protocol == 'SCP':
-        scpTransfer(session)
-    elif protocol == 'FTP':
-        sftpSend(session)
+    sftp = session.sftp_init()
+    return sftp
+
+def mkdir_p(sftp, remote, is_dir=False):
+    # emulates mkdir_p if required. 
+    dirs = []
+    dir, basename = os.path.split(remote)
+    while len(dir) > 1:
+        dirs.append(dir)
+        dir, _  = os.path.split(dir)
+
+    if len(dir) == 1 and not dir.startswith("/"): 
+        dirs.append(dir) # For a remote path like y/x.txt 
+
+    while len(dirs):
+        dir = dirs.pop()
+        try:
+            sftp.stat(dir)
+        except:
+            print("making ... dir",  dir)
+            sftp.mkdir(dir, 0o777)
+
+sftp = initialise()
+mkdir_p(sftp, "/Pokemon/Doraemon")

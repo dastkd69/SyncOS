@@ -5,8 +5,8 @@ import sys
 import subprocess
 
 #subprocesses (LINUX)
-subprocess.check_call(['apt-get', 'install', '-y', 'libssl-dev'])
 subprocess.check_call(['apt-get', 'install', '-y', 'openssh'])
+subprocess.check_call(['apt-get', 'install', '-y', 'libssl-dev'])
 subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 
 

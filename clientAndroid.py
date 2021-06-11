@@ -1,9 +1,22 @@
 import client
 
+from android import AndroidService
 from android.storage import app_storage_path
 from android.storage import primary_external_storage_path
 from android.storage import secondary_external_storage_path
 from android.permissions import request_permissions, Permission
+
+
+class ServiceExample(App):
+
+    def start_service(self):
+        self.service = AndroidService('Sevice example', 'service is running')
+        self.service.start('Hello From Service')
+
+    def stop_service(self):
+        self.service.stop()
+
+def runInBg
 
 #request android permissions
 request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
@@ -31,3 +44,15 @@ def syncAllFolders():
         client.initialise('FTP')
     finally:
         print("Failed Transfer! ")
+
+
+def DirTreeWalker(source):
+    filepaths = []
+    for dirpath, dirnames, filenames in os.walk(source):
+        filepaths.append = os.path.join(dirpath[len(source):], filenames)
+        filepaths.append = os.path.join(dirpath[len(source):], )
+        if not os.path.isdir(structure):
+            os.mkdir(structure)
+        else:
+            print("Folder does already exits!")
+
