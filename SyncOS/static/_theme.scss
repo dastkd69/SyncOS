@@ -1,0 +1,23 @@
+$color1: rgba(86, 128, 233, 1);
+$color2: rgba(136, 96, 208, 0.95);
+$color3: rgba(90, 185, 234, 0.6);
+$drop-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.20);
+$text-color: linear-gradient(to right bottom, $color1, $color2);
+$font : "Poppins", sans-serif;
+$diskusage : 13.81;
+$assetsfolder : "../../../common_static/assets"
+
+
+
+@mixin glass($opacity) {
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, $opacity), rgba(255, 255, 255, $opacity));
+    border-radius: 2rem;   
+    backdrop-filter: blur(0.6rem);
+    box-shadow: $drop-shadow;    
+}
+
+@mixin textClip {
+    background: $text-color;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

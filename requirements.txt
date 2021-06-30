@@ -1,3 +1,5 @@
-cython
-ssh2-python
-dotenv
+bottle==0.12.19
+certifi==2021.5.30
+Cython==0.29.23
+python-dotenv==0.17.1
+ssh2-python==0.26.0
