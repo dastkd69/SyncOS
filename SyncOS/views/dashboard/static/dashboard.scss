@@ -1,0 +1,271 @@
+@import "../../../common_static/theme";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+    text-decoration: none;
+}
+
+body {
+    background: url("assets/background2.jpg");
+    background-size: cover;
+}
+
+main {
+    min-height: 100vh;
+    min-width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0% 4% 0% 4%;
+}
+
+.left-pane {
+    background: white;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 90vh;
+    max-height: 95vh;
+    padding: 1rem;
+    @include glass(0.65);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+
+    .user {
+    
+        h3 {
+            color: $text-color;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0.6;
+        }
+    
+        img {
+            max-width: 69%;
+            border-radius: 50%;
+            box-shadow: 3rem, 5rem, 5rem, $drop-shadow;
+        }
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    
+        .link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10%;
+            padding-bottom: 10%;
+            padding-right: 0%;
+            padding-left: 0%;
+            transition: ease 0.4s;
+            opacity: 0.8;
+
+            img {
+                height: 40%;
+                width: 40%;
+            }
+        
+            h2 {
+                padding-top: 5%;
+                font-size: 100%;
+            }
+
+            &:hover {
+                transform: translateY(-5%);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+
+// h2{
+//     color: var(--text-color);
+//     font-size: 1.25rem;
+//     font-weight: 500;
+//     opacity: 0.8;
+// }
+
+
+//right pane
+.right-pane {
+    min-height: 90vh;
+    max-height: 95vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    @include glass(0.60);
+
+    .heading {
+        max-height: 5rem;
+        margin-left: 2.3%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    
+        input {
+            flex: 3;
+            width: 55rem;
+            height: 2.5rem;
+            margin-left: 20rem;
+            border-radius: 3rem;
+            border: none;
+            padding: 1%;
+            @include glass(0.4);
+        }
+    
+        h1 {
+            flex: 1;
+            @include textClip;
+            font-weight: 600;
+            font-size: 3rem;
+            opacity: 0.8;
+        }    
+    }
+
+    .dashboard {
+        min-width: 100%;
+        min-height: 100%;
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        padding: 10%;
+    
+        .progressbar {
+            min-width: 25%;
+            min-height: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: ease 0.4s;
+        
+            &:hover {
+                transform: translateY(-10%);
+            }
+
+            svg {
+                position: absolute;
+                stroke-width: 5%;
+                stroke-linecap: round;
+                @include glass(0.35);
+                border-radius: 50%;
+                fill: none;
+                transform: rotate(90deg);
+            
+                circle {    
+                    stroke-dasharray: 264 264;
+                    //stroke-dashoffset: 264 - 20/100*264;
+                    //transition: 2s ease-out;
+                    animation: progress 3s ease-out;
+                    animation-fill-mode: forwards; 
+                    
+                    @keyframes progress {
+                        from {
+                            stroke-dashoffset: 264;
+                        }
+                        
+                        to {
+                            stroke-dashoffset:  264 - 13.1/100*264;
+                        }
+                    }
+                }
+            }
+            
+            .percentage {
+                margin-left: 5%;
+                margin-top: 2%;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                        
+                h4 {
+                    @include textClip;
+                    font-weight: 700;
+                    font-size: 3rem;
+                    transition: 0.4s;
+                }
+            }
+        }
+
+        .system-info {
+            min-height: 100%;
+            min-width: 75%;
+            margin-left: 10%;
+        
+            li {
+                list-style-type: none;
+                padding: 0.5%;
+                font-size: 1.4rem;
+                font-weight: 350;
+                text-decoration: none;
+        
+                span {
+                    font-weight: 600;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .cards {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2%;
+    
+        .card {
+            display: flex;
+            flex-direction: column;
+            @include glass(0.7);
+            opacity: 0.7;
+            width: 25%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            padding: 2%;
+            transition: ease 0.4s;
+            text-decoration: none;
+
+            img {
+                max-height: 6rem;
+                padding: 6%;
+            }
+
+            .card-info {
+                text-decoration: none;
+                color: $text-color;
+
+                h2 {
+                    text-decoration: none;
+                    color: $text-color;
+                }
+
+                p {
+                    text-decoration: none;
+                    color: $text-color;
+                }
+            }
+
+            &:hover {
+                transform: translateY(-10%);
+                opacity: 1;
+            }
+        }
+    }
+}
+

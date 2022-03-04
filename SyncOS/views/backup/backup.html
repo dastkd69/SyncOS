@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/backup.css" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <main>
+        <section class="left-pane">
+            <div class="user">
+                <img src="static/assets/user.png" alt="Display Picture Not Found">
+                <h3>Tridib Das</h3>
+            </div>
+            <nav>
+                <div class="link">
+                    <img src="./static/assets/folder.png" alt="">
+                    <h2>Files</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/backup.svg" alt="">
+                    <h2>Sync</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/facebook.svg" alt="">
+                    <h2>Stream</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/settings.svg" alt="">
+                    <h2>Settings</h2>
+                </div>
+            </nav>
+        </section>
+        <section class="right-pane">
+            <div class="heading">
+                <h1>Dashboard</h1>
+                <input type="text" placeholder="Search" onfocus="value=''" />
+            </div>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                Select a file: <input type="file" name="upload" webkitdirectory directory multiple />
+                <input type="submit" value="Start upload" />
+            </form>
+        </section>
+    </main>
+</body>
+</html>

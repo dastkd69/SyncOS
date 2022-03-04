@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  background: url("assets/background2.jpg");
+  background-size: cover;
+}
+
+main {
+  min-height: 100vh;
+  min-width: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0% 4% 0% 4%;
+}
+
+.left-pane {
+  background: white;
+  min-width: 10vw;
+  max-width: 10vw;
+  min-height: 90vh;
+  max-height: 95vh;
+  padding: 1rem;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.65)), to(rgba(255, 255, 255, 0.65)));
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65));
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(0.6rem);
+          backdrop-filter: blur(0.6rem);
+  -webkit-box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+}
+
+.left-pane .user h3 {
+  color: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+  font-size: 1.5rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.left-pane .user img {
+  max-width: 69%;
+  border-radius: 50%;
+  -webkit-box-shadow: 3rem, 5rem, 5rem, 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 3rem, 5rem, 5rem, 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+.left-pane nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.left-pane nav .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-right: 0%;
+  padding-left: 0%;
+  -webkit-transition: ease 0.4s;
+  transition: ease 0.4s;
+  opacity: 0.8;
+}
+
+.left-pane nav .link img {
+  height: 40%;
+  width: 40%;
+}
+
+.left-pane nav .link h2 {
+  padding-top: 5%;
+  font-size: 100%;
+}
+
+.left-pane nav .link:hover {
+  -webkit-transform: translateY(-5%);
+          transform: translateY(-5%);
+  opacity: 1;
+}
+
+.right-pane {
+  min-height: 90vh;
+  max-height: 95vh;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6)));
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(0.6rem);
+          backdrop-filter: blur(0.6rem);
+  -webkit-box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+.right-pane .heading {
+  max-height: 5rem;
+  margin-left: 2.3%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.right-pane .heading input {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  width: 55rem;
+  height: 2.5rem;
+  margin-left: 20rem;
+  border-radius: 3rem;
+  border: none;
+  padding: 1%;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0.4)));
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4));
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(0.6rem);
+          backdrop-filter: blur(0.6rem);
+  -webkit-box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+.right-pane .heading h1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: -webkit-gradient(linear, left top, right bottom, from(#5680e9), to(rgba(136, 96, 208, 0.95)));
+  background: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 3rem;
+  opacity: 0.8;
+}
+
+.right-pane .dashboard {
+  min-width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10%;
+}
+
+.right-pane .dashboard .progressbar {
+  min-width: 25%;
+  min-height: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  -webkit-transition: ease 0.4s;
+  transition: ease 0.4s;
+}
+
+.right-pane .dashboard .progressbar:hover {
+  -webkit-transform: translateY(-10%);
+          transform: translateY(-10%);
+}
+
+.right-pane .dashboard .progressbar svg {
+  position: absolute;
+  stroke-width: 5%;
+  stroke-linecap: round;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.35)), to(rgba(255, 255, 255, 0.35)));
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(0.6rem);
+          backdrop-filter: blur(0.6rem);
+  -webkit-box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  fill: none;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.right-pane .dashboard .progressbar svg circle {
+  stroke-dasharray: 264 264;
+  -webkit-animation: progress 3s ease-out;
+          animation: progress 3s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes progress {
+  from {
+    stroke-dashoffset: 264;
+  }
+  to {
+    stroke-dashoffset: 229.416;
+  }
+}
+
+@keyframes progress {
+  from {
+    stroke-dashoffset: 264;
+  }
+  to {
+    stroke-dashoffset: 229.416;
+  }
+}
+
+.right-pane .dashboard .progressbar .percentage {
+  margin-left: 5%;
+  margin-top: 2%;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+}
+
+.right-pane .dashboard .progressbar .percentage h4 {
+  background: -webkit-gradient(linear, left top, right bottom, from(#5680e9), to(rgba(136, 96, 208, 0.95)));
+  background: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 3rem;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.right-pane .dashboard .system-info {
+  min-height: 100%;
+  min-width: 75%;
+  margin-left: 10%;
+}
+
+.right-pane .dashboard .system-info li {
+  list-style-type: none;
+  padding: 0.5%;
+  font-size: 1.4rem;
+  font-weight: 350;
+  text-decoration: none;
+}
+
+.right-pane .dashboard .system-info li span {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.right-pane .cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 2%;
+}
+
+.right-pane .cards .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0.7)));
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+  border-radius: 2rem;
+  -webkit-backdrop-filter: blur(0.6rem);
+          backdrop-filter: blur(0.6rem);
+  -webkit-box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0.3rem 0.45rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+  width: 25%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2%;
+  -webkit-transition: ease 0.4s;
+  transition: ease 0.4s;
+  text-decoration: none;
+}
+
+.right-pane .cards .card img {
+  max-height: 6rem;
+  padding: 6%;
+}
+
+.right-pane .cards .card .card-info {
+  text-decoration: none;
+  color: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+}
+
+.right-pane .cards .card .card-info h2 {
+  text-decoration: none;
+  color: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+}
+
+.right-pane .cards .card .card-info p {
+  text-decoration: none;
+  color: linear-gradient(to right bottom, #5680e9, rgba(136, 96, 208, 0.95));
+}
+
+.right-pane .cards .card:hover {
+  -webkit-transform: translateY(-10%);
+          transform: translateY(-10%);
+  opacity: 1;
+}
+/*# sourceMappingURL=dashboard.css.map */

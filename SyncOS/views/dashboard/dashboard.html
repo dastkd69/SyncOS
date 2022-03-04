@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/dashboard.css" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <main>
+        <section class="left-pane">
+            <div class="user">
+                <img src="static/assets/user.png" alt="Display Picture Not Found">
+                <h3>Tridib Das</h3>
+            </div>
+            <nav>
+                <div class="link">
+                    <img src="./static/assets/folder.png" alt="">
+                    <h2>Files</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/backup.svg" alt="">
+                    <h2>Sync</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/facebook.svg" alt="">
+                    <h2>Stream</h2>
+                </div>
+                <div class="link">
+                    <img src="./static/assets/settings.svg" alt="">
+                    <h2>Settings</h2>
+                </div>
+            </nav>
+        </section>
+        <section class="right-pane">
+            <div class="heading">
+                <h1>Dashboard</h1>
+                <input type="text" placeholder="Search" onfocus="value=''" />
+            </div>
+            <div class="dashboard">
+                <div class="progressbar">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">                        
+                                <stop offset="0%"   stop-color="rgb(136, 96, 208)"/>
+                                <stop offset="70%"    stop-color="rgb(86, 128, 233)"/>                                
+                                <stop offset="100%"  stop-color="rgb(90, 185, 234)"/>                       
+                            </linearGradient>                        
+                        </defs>
+                        <circle r="42" cx="50" cy="50" stroke="url(#linear)"/>                        
+                    </svg>
+                    <div class="percentage">
+                        <h4>{{ sysinfo[6][1] }}<span>%</span></h4>
+                    </div>
+                </div>
+                <div class="system-info">
+                    <ul class="info">
+                        <li><span class="category">{{ sysinfo[0][0] }}:</span> {{ sysinfo[0][1] }} </li>
+                        <li><span class="category">{{ sysinfo[1][0] }}:</span> {{ sysinfo[1][1] }} </li>
+                        <li><span class="category">{{ sysinfo[2][0] }}:</span> {{ sysinfo[2][1] }} </li>
+                        <li><span class="category">{{ sysinfo[3][0] }}:</span> {{ sysinfo[3][1] }} </li>
+                        <li><span class="category">{{ sysinfo[4][0] }}:</span> {{ sysinfo[4][1] }} </li>
+                        <li><span class="category">{{ sysinfo[5][0] }}:</span> {{ sysinfo[5][1] }} </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cards">
+                <a href="../photos/photos.html" class="card">
+                    <img src="./static/assets/gallery.png" alt="" />
+                    <div class="card-info">
+                        <h2>Photos</h2>
+                        <p>32 GB</p>
+                    </div>
+                </a>
+                <a href="../videos/videos.html" class="card">
+                    <img src="./static/assets/youtube.png" alt="" />
+                    <div class="card-info">
+                        <h2>Videos</h2>
+                        <p>32 GB</p>
+                    </div>
+                </a>
+                <a href="../documents/documents.html" class="card">
+                    <img src="./static/assets/document.png" alt="" />
+                    <div class="card-info">
+                        <h2>Documents</h2>
+                        <p>32 GB</p>
+                    </div> 
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+
+
+<!-- if sysinfo[4] == "x86_64" "64-bit x86 System" else "ARMv8a based" -->
